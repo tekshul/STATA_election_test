@@ -1,0 +1,1118 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\AnshulRaiSharma\OneDrive - Azim Premji Foundation\Desktop\IFMR\submission\STATA_log_submission_21.11.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}21 Nov 2023, 12:54:26
+
+{com}. insheet using "C:\Users\AnshulRaiSharma\OneDrive - Azim Premji Foundation\Desktop\IFMR\Data for Stata Test_2018.csv", comma
+{txt}(9 vars, 7021 obs)
+
+{com}. describe
+
+{txt}Contains data
+  obs:{res}         7,021                          
+{txt} vars:{res}             9                          
+{txt} size:{res}       140,420{txt} (99.7% of memory free)
+{hline}
+              storage  display     value
+variable name   type   format      label      variable label
+{hline}
+{p 0 48}{res}{bind:town_id        }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:turnout_total  }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:turnout_male   }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:turnout_female }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:registered_to~l}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:registered_male}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:registered_fe~e}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:treatment      }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:treatment_phase}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{txt}{hline}
+Sorted by:  
+{res}     Note:  dataset has changed since last saved
+
+{com}. rename town_id townid
+
+. cd "C:\Users\AnshulRaiSharma\Downloads\S11-20231118T131352Z-001\S11"
+{res}C:\Users\AnshulRaiSharma\Downloads\S11-20231118T131352Z-001\S11
+
+{com}. merge m:1 townid using Townname.dta
+{res}
+{txt}{col 5}Result{col 38}# of obs.
+{col 5}{hline 41}
+{col 5}not matched{col 30}{res}              52
+{txt}{col 9}from master{col 30}{res}              51{txt}  (_merge==1)
+{col 9}from using{col 30}{res}               1{txt}  (_merge==2)
+
+{col 5}matched{col 30}{res}           6,970{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. keep if _merge == 3
+{txt}(52 observations deleted)
+
+{com}. describe
+
+{txt}Contains data
+  obs:{res}         6,970                          
+{txt} vars:{res}            12                          
+{txt} size:{res}       320,620{txt} (99.4% of memory free)
+{hline}
+              storage  display     value
+variable name   type   format      label      variable label
+{hline}
+{p 0 48}{res}{bind:townid         }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:turnout_total  }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:turnout_male   }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:turnout_female }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:registered_to~l}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:registered_male}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:registered_fe~e}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:treatment      }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:treatment_phase}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:townname       }{txt}{bind: str11  }{bind:{txt}%11s       }{space 1}{bind:         }{bind:  }{res}{res}Town Name{p_end}
+{p 0 48}{bind:district       }{txt}{bind: str14  }{bind:{txt}%14s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:_merge         }{txt}{bind: byte   }{bind:{txt}%23.0g     }{space 1}{bind:_merge   }{bind:  }{res}{res}{p_end}
+{txt}{hline}
+Sorted by:  
+{res}     Note:  dataset has changed since last saved
+
+{com}. drop _merge
+
+. save stata_submission1.dta, replace
+{txt}(note: file stata_submission1.dta not found)
+file stata_submission1.dta saved
+
+{com}. tabulate townid, nolabel
+
+     {txt}townid {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+        171 {c |}{res}        270        3.87        3.87
+{txt}        172 {c |}{res}        319        4.58        8.45
+{txt}        173 {c |}{res}        253        3.63       12.08
+{txt}        175 {c |}{res}        288        4.13       16.21
+{txt}        176 {c |}{res}        274        3.93       20.14
+{txt}        177 {c |}{res}        279        4.00       24.15
+{txt}        190 {c |}{res}        256        3.67       27.82
+{txt}        191 {c |}{res}        302        4.33       32.15
+{txt}        192 {c |}{res}        218        3.13       35.28
+{txt}        193 {c |}{res}        227        3.26       38.54
+{txt}        195 {c |}{res}        225        3.23       41.76
+{txt}        196 {c |}{res}        248        3.56       45.32
+{txt}        197 {c |}{res}        245        3.52       48.84
+{txt}        198 {c |}{res}        237        3.40       52.24
+{txt}        199 {c |}{res}        247        3.54       55.78
+{txt}        200 {c |}{res}        222        3.19       58.97
+{txt}        201 {c |}{res}        241        3.46       62.42
+{txt}        208 {c |}{res}        294        4.22       66.64
+{txt}        210 {c |}{res}        251        3.60       70.24
+{txt}        211 {c |}{res}        239        3.43       73.67
+{txt}        212 {c |}{res}        233        3.34       77.02
+{txt}        213 {c |}{res}        290        4.16       81.18
+{txt}        235 {c |}{res}        254        3.64       84.82
+{txt}        236 {c |}{res}        295        4.23       89.05
+{txt}        237 {c |}{res}        260        3.73       92.78
+{txt}        238 {c |}{res}        243        3.49       96.27
+{txt}        239 {c |}{res}        260        3.73      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,970      100.00
+
+{com}. encode district, gen(district_num)
+
+. label list district_num
+{txt}district_num:
+{res}           1 Araria
+           2 Aurangabad
+           3 Begusarai
+           4 Bhagalpur
+           5 Bhojpur
+           6 Buxar
+           7 Darbhanga
+           8 East Champaran
+           9 Gaya
+          10 Katihar
+          11 Kishanganj
+          12 Madhepura
+          13 Munger
+          14 Muzaffarpur
+          15 Nalanda
+          16 Nawada
+          17 Purnia
+          18 Rohtas
+          19 Saharsa
+          20 Samastipur
+          21 Saran
+          22 Sitamarhi
+          23 Siwan
+          24 Vaishali
+          25 West Champaran
+
+{com}. gen townid_str = string(townid, "%03.0f")
+
+. gen obs_num = string(_n, "%04.0f")
+
+. gen unique_id = townid_str + obs_num
+
+. describe
+
+{txt}Contains data from {res}stata_submission1.dta
+{txt}  obs:{res}         6,970                          
+{txt} vars:{res}            15                          21 Nov 2023 12:56
+{txt} size:{res}       439,110{txt} (99.2% of memory free)
+{hline}
+              storage  display     value
+variable name   type   format      label      variable label
+{hline}
+{p 0 48}{res}{bind:townid         }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:turnout_total  }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:turnout_male   }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:turnout_female }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:registered_to~l}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:registered_male}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:registered_fe~e}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:treatment      }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:treatment_phase}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:townname       }{txt}{bind: str11  }{bind:{txt}%11s       }{space 1}{bind:         }{bind:  }{res}{res}Town Name{p_end}
+{p 0 48}{bind:district       }{txt}{bind: str14  }{bind:{txt}%14s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:district_num   }{txt}{bind: long   }{bind:{txt}%14.0g     }{space 1}{txt}district_num{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:townid_str     }{txt}{bind: str3   }{bind:{txt}%9s        }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:obs_num        }{txt}{bind: str4   }{bind:{txt}%9s        }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:unique_id      }{txt}{bind: str7   }{bind:{txt}%9s        }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{txt}{hline}
+Sorted by:  
+{res}     Note:  dataset has changed since last saved
+
+{com}. drop townid_str obs_num
+
+. describe
+
+{txt}Contains data from {res}stata_submission1.dta
+{txt}  obs:{res}         6,970                          
+{txt} vars:{res}            13                          21 Nov 2023 12:56
+{txt} size:{res}       390,320{txt} (99.3% of memory free)
+{hline}
+              storage  display     value
+variable name   type   format      label      variable label
+{hline}
+{p 0 48}{res}{bind:townid         }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:turnout_total  }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:turnout_male   }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:turnout_female }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:registered_to~l}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:registered_male}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:registered_fe~e}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:treatment      }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:treatment_phase}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:townname       }{txt}{bind: str11  }{bind:{txt}%11s       }{space 1}{bind:         }{bind:  }{res}{res}Town Name{p_end}
+{p 0 48}{bind:district       }{txt}{bind: str14  }{bind:{txt}%14s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:district_num   }{txt}{bind: long   }{bind:{txt}%14.0g     }{space 1}{txt}district_num{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:unique_id      }{txt}{bind: str7   }{bind:{txt}%9s        }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{txt}{hline}
+Sorted by:  
+{res}     Note:  dataset has changed since last saved
+
+{com}. foreach var of varlist _all {c -(}
+{txt}  2{com}. 
+. 
+. 
+.     count if `var' == -999
+{txt}  3{com}. 
+. 
+. 
+.     if r(N) > 0 {c -(}
+{txt}  4{com}. 
+. 
+. 
+.         display "`var' has " r(N) " missing values represented as -999"
+{txt}  5{com}. 
+. 
+. 
+.      {c )-}
+{txt}  6{com}. 
+. 
+. 
+.  {c )-}
+{res}    0
+    0
+    0
+    0
+   20
+registered_total has 20 missing values represented as -999
+   20
+registered_male has 20 missing values represented as -999
+   20
+registered_female has 20 missing values represented as -999
+    0
+    0
+{err}type mismatch
+{txt}{search r(109):r(109);}
+
+{com}. list townid if registered_total == -999 | registered_male == -999 | registered_female == -999
+{txt}
+      {c TLC}{hline 8}{c TRC}
+      {c |} {res}townid {txt}{c |}
+      {c LT}{hline 8}{c RT}
+ 757. {c |} {res}   173 {txt}{c |}
+1076. {c |} {res}   175 {txt}{c |}
+1084. {c |} {res}   175 {txt}{c |}
+1654. {c |} {res}   177 {txt}{c |}
+2780. {c |} {res}   195 {txt}{c |}
+      {c LT}{hline 8}{c RT}
+2803. {c |} {res}   195 {txt}{c |}
+3540. {c |} {res}   198 {txt}{c |}
+4080. {c |} {res}   200 {txt}{c |}
+4912. {c |} {res}   211 {txt}{c |}
+5032. {c |} {res}   211 {txt}{c |}
+      {c LT}{hline 8}{c RT}
+5376. {c |} {res}   213 {txt}{c |}
+5455. {c |} {res}   213 {txt}{c |}
+5822. {c |} {res}   235 {txt}{c |}
+5927. {c |} {res}   236 {txt}{c |}
+5965. {c |} {res}   236 {txt}{c |}
+      {c LT}{hline 8}{c RT}
+6202. {c |} {res}   236 {txt}{c |}
+6331. {c |} {res}   237 {txt}{c |}
+6502. {c |} {res}   238 {txt}{c |}
+6610. {c |} {res}   238 {txt}{c |}
+6662. {c |} {res}   238 {txt}{c |}
+      {c BLC}{hline 8}{c BRC}
+
+{com}. local townids 173 175 177 195 198 200 211 213 235 236 237 238
+
+. 
+.  foreach id of local townids {c -(}
+{txt}  2{com}. 
+.  count if townid == `id'
+{txt}  3{com}. 
+.   local num_obs = r(N)
+{txt}  4{com}. 
+.     display "townid `id': `num_obs' observations"
+{txt}  5{com}. 
+.  {c )-}
+{res}  253
+townid 173: 253 observations
+  288
+townid 175: 288 observations
+  279
+townid 177: 279 observations
+  225
+townid 195: 225 observations
+  237
+townid 198: 237 observations
+  222
+townid 200: 222 observations
+  239
+townid 211: 239 observations
+  290
+townid 213: 290 observations
+  254
+townid 235: 254 observations
+  295
+townid 236: 295 observations
+  260
+townid 237: 260 observations
+  243
+townid 238: 243 observations
+
+{com}. foreach var of varlist _all {c -(}
+{txt}  2{com}. 
+.   drop if `var' == -999
+{txt}  3{com}. 
+.   {c )-}
+{txt}(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(20 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+{err}type mismatch
+{txt}{search r(109):r(109);}
+
+{com}. foreach var of varlist _all {c -(}
+{txt}  2{com}. 
+.   drop if `var' < 0
+{txt}  3{com}. 
+.   {c )-}
+{txt}(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(2 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+{err}type mismatch
+{txt}{search r(109):r(109);}
+
+{com}. tabulate townid, generate(townid_dumvar)
+
+     {txt}townid {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+        171 {c |}{res}        270        3.89        3.89
+{txt}        172 {c |}{res}        319        4.59        8.48
+{txt}        173 {c |}{res}        251        3.61       12.09
+{txt}        175 {c |}{res}        286        4.12       16.21
+{txt}        176 {c |}{res}        274        3.94       20.15
+{txt}        177 {c |}{res}        277        3.99       24.14
+{txt}        190 {c |}{res}        256        3.68       27.82
+{txt}        191 {c |}{res}        302        4.35       32.17
+{txt}        192 {c |}{res}        218        3.14       35.31
+{txt}        193 {c |}{res}        227        3.27       38.57
+{txt}        195 {c |}{res}        223        3.21       41.78
+{txt}        196 {c |}{res}        248        3.57       45.35
+{txt}        197 {c |}{res}        245        3.53       48.88
+{txt}        198 {c |}{res}        236        3.40       52.27
+{txt}        199 {c |}{res}        247        3.55       55.83
+{txt}        200 {c |}{res}        221        3.18       59.01
+{txt}        201 {c |}{res}        241        3.47       62.48
+{txt}        208 {c |}{res}        294        4.23       66.71
+{txt}        210 {c |}{res}        251        3.61       70.32
+{txt}        211 {c |}{res}        237        3.41       73.73
+{txt}        212 {c |}{res}        233        3.35       77.09
+{txt}        213 {c |}{res}        288        4.15       81.23
+{txt}        235 {c |}{res}        253        3.64       84.87
+{txt}        236 {c |}{res}        292        4.20       89.08
+{txt}        237 {c |}{res}        259        3.73       92.80
+{txt}        238 {c |}{res}        240        3.45       96.26
+{txt}        239 {c |}{res}        260        3.74      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      6,948      100.00
+
+{com}. describe townid_dumvar*
+
+              {txt}storage  display     value
+variable name   type   format      label      variable label
+{hline}
+{p 0 48}{res}{bind:townid_dumvar1 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   171.0000{p_end}
+{p 0 48}{bind:townid_dumvar2 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   172.0000{p_end}
+{p 0 48}{bind:townid_dumvar3 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   173.0000{p_end}
+{p 0 48}{bind:townid_dumvar4 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   175.0000{p_end}
+{p 0 48}{bind:townid_dumvar5 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   176.0000{p_end}
+{p 0 48}{bind:townid_dumvar6 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   177.0000{p_end}
+{p 0 48}{bind:townid_dumvar7 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   190.0000{p_end}
+{p 0 48}{bind:townid_dumvar8 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   191.0000{p_end}
+{p 0 48}{bind:townid_dumvar9 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   192.0000{p_end}
+{p 0 48}{bind:townid_dumvar10}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   193.0000{p_end}
+{p 0 48}{bind:townid_dumvar11}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   195.0000{p_end}
+{p 0 48}{bind:townid_dumvar12}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   196.0000{p_end}
+{p 0 48}{bind:townid_dumvar13}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   197.0000{p_end}
+{p 0 48}{bind:townid_dumvar14}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   198.0000{p_end}
+{p 0 48}{bind:townid_dumvar15}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   199.0000{p_end}
+{p 0 48}{bind:townid_dumvar16}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   200.0000{p_end}
+{p 0 48}{bind:townid_dumvar17}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   201.0000{p_end}
+{p 0 48}{bind:townid_dumvar18}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   208.0000{p_end}
+{p 0 48}{bind:townid_dumvar19}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   210.0000{p_end}
+{p 0 48}{bind:townid_dumvar20}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   211.0000{p_end}
+{p 0 48}{bind:townid_dumvar21}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   212.0000{p_end}
+{p 0 48}{bind:townid_dumvar22}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   213.0000{p_end}
+{p 0 48}{bind:townid_dumvar23}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   235.0000{p_end}
+{p 0 48}{bind:townid_dumvar24}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   236.0000{p_end}
+{p 0 48}{bind:townid_dumvar25}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   237.0000{p_end}
+{p 0 48}{bind:townid_dumvar26}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   238.0000{p_end}
+{p 0 48}{bind:townid_dumvar27}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   239.0000{p_end}
+
+{com}. describe
+
+{txt}Contains data from {res}stata_submission1.dta
+{txt}  obs:{res}         6,948                          
+{txt} vars:{res}            40                          21 Nov 2023 12:56
+{txt} size:{res}       576,684{txt} (98.9% of memory free)
+{hline}
+              storage  display     value
+variable name   type   format      label      variable label
+{hline}
+{p 0 48}{res}{bind:townid         }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:turnout_total  }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:turnout_male   }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:turnout_female }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:registered_to~l}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:registered_male}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:registered_fe~e}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:treatment      }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:treatment_phase}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:townname       }{txt}{bind: str11  }{bind:{txt}%11s       }{space 1}{bind:         }{bind:  }{res}{res}Town Name{p_end}
+{p 0 48}{bind:district       }{txt}{bind: str14  }{bind:{txt}%14s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:district_num   }{txt}{bind: long   }{bind:{txt}%14.0g     }{space 1}{txt}district_num{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:unique_id      }{txt}{bind: str7   }{bind:{txt}%9s        }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:townid_dumvar1 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   171.0000{p_end}
+{p 0 48}{bind:townid_dumvar2 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   172.0000{p_end}
+{p 0 48}{bind:townid_dumvar3 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   173.0000{p_end}
+{p 0 48}{bind:townid_dumvar4 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   175.0000{p_end}
+{p 0 48}{bind:townid_dumvar5 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   176.0000{p_end}
+{p 0 48}{bind:townid_dumvar6 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   177.0000{p_end}
+{p 0 48}{bind:townid_dumvar7 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   190.0000{p_end}
+{p 0 48}{bind:townid_dumvar8 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   191.0000{p_end}
+{p 0 48}{bind:townid_dumvar9 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   192.0000{p_end}
+{p 0 48}{bind:townid_dumvar10}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   193.0000{p_end}
+{p 0 48}{bind:townid_dumvar11}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   195.0000{p_end}
+{p 0 48}{bind:townid_dumvar12}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   196.0000{p_end}
+{p 0 48}{bind:townid_dumvar13}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   197.0000{p_end}
+{p 0 48}{bind:townid_dumvar14}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   198.0000{p_end}
+{p 0 48}{bind:townid_dumvar15}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   199.0000{p_end}
+{p 0 48}{bind:townid_dumvar16}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   200.0000{p_end}
+{p 0 48}{bind:townid_dumvar17}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   201.0000{p_end}
+{p 0 48}{bind:townid_dumvar18}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   208.0000{p_end}
+{p 0 48}{bind:townid_dumvar19}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   210.0000{p_end}
+{p 0 48}{bind:townid_dumvar20}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   211.0000{p_end}
+{p 0 48}{bind:townid_dumvar21}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   212.0000{p_end}
+{p 0 48}{bind:townid_dumvar22}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   213.0000{p_end}
+{p 0 48}{bind:townid_dumvar23}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   235.0000{p_end}
+{p 0 48}{bind:townid_dumvar24}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   236.0000{p_end}
+{p 0 48}{bind:townid_dumvar25}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   237.0000{p_end}
+{p 0 48}{bind:townid_dumvar26}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   238.0000{p_end}
+{p 0 48}{bind:townid_dumvar27}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   239.0000{p_end}
+{txt}{hline}
+Sorted by:  
+{res}     Note:  dataset has changed since last saved
+
+{com}. local id_vars "townid townname district district_num unique_id"
+
+. 
+. foreach var in `id_vars' {c -(}
+{txt}  2{com}. 
+.     label variable `var' "ID variable"
+{txt}  3{com}. 
+.  {c )-}
+
+. local electoral_vars "turnout_total turnout_male turnout_female registered_total registered_male registered_female"
+
+. 
+.  foreach var in `electoral_vars' {c -(}
+{txt}  2{com}. 
+.      label variable `var' "Electoral data" {c )-}
+{err}invalid syntax
+{txt}{search r(198):r(198);}
+
+{com}. local electoral_vars "turnout_total turnout_male turnout_female registered_total registered_male registered_female"
+
+. 
+.  foreach var in `electoral_vars' {c -(}
+{txt}  2{com}. 
+.      label variable `var' "Electoral data"
+{txt}  3{com}. local electoral_vars "turnout_total turnout_male turnout_female registered_total registered_male registered_female"
+{txt}  4{com}. 
+.  foreach var in `electoral_vars' {c -(}
+{txt}  5{com}. 
+.      label variable `var' "Electoral data"
+{txt}  6{com}. local electoral_vars "turnout_total turnout_male turnout_female registered_total registered_male registered_female"
+{txt}  7{com}. 
+.  foreach var in `electoral_vars' {c -(}
+{txt}  8{com}. 
+.      label variable `var' "Electoral data" 
+{txt}  9{com}. 
+.  {c )-}
+{txt} 10{com}. local electoral_vars "turnout_total turnout_male turnout_female registered_total registered_male registered_female"
+{txt} 11{com}. foreach var in `electoral_vars' {c -(}
+{txt} 12{com}. 
+.   label variable `var' "Electoral data" 
+{txt} 13{com}. 
+.  {c )-}
+{txt} 14{com}. local electoral_vars "turnout_total turnout_male turnout_female registered_total registered_male registered_female"
+{txt} 15{com}. 
+. foreach var of local electoral_vars {c -(}
+{txt} 16{com}. 
+.     label variable `var' "Electoral data"
+{txt} 17{com}. 
+. {c )-}
+{txt} 18{com}. describe
+{txt} 19{com}. exit
+{txt} 20{com}. )
+{txt} 21{com}. end
+{err}{hline 2}Break{hline 2}
+{txt}{search r(1):r(1);}
+
+{com}. local electoral_vars "turnout_total turnout_male turnout_female registered_total registered_male registered_female"
+
+. foreach var in `electoral_vars' {c -(}
+{txt}  2{com}. 
+.      label variable `var' "Electoral data" 
+{txt}  3{com}. 
+.  {c )-}
+
+. local intervention_vars "treatment treatment_phase"
+
+. foreach var in `intervention_vars' {c -(}
+{txt}  2{com}. 
+.     label variable `var' "Intervention"
+{txt}  3{com}. 
+. 
+. 
+.  {c )-}
+
+. describe
+
+{txt}Contains data from {res}stata_submission1.dta
+{txt}  obs:{res}         6,948                          
+{txt} vars:{res}            40                          21 Nov 2023 12:56
+{txt} size:{res}       576,684{txt} (98.9% of memory free)
+{hline}
+              storage  display     value
+variable name   type   format      label      variable label
+{hline}
+{p 0 48}{res}{bind:townid         }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}ID variable{p_end}
+{p 0 48}{bind:turnout_total  }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}Electoral data{p_end}
+{p 0 48}{bind:turnout_male   }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}Electoral data{p_end}
+{p 0 48}{bind:turnout_female }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}Electoral data{p_end}
+{p 0 48}{bind:registered_to~l}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}Electoral data{p_end}
+{p 0 48}{bind:registered_male}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}Electoral data{p_end}
+{p 0 48}{bind:registered_fe~e}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}Electoral data{p_end}
+{p 0 48}{bind:treatment      }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}Intervention{p_end}
+{p 0 48}{bind:treatment_phase}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}Intervention{p_end}
+{p 0 48}{bind:townname       }{txt}{bind: str11  }{bind:{txt}%11s       }{space 1}{bind:         }{bind:  }{res}{res}ID variable{p_end}
+{p 0 48}{bind:district       }{txt}{bind: str14  }{bind:{txt}%14s       }{space 1}{bind:         }{bind:  }{res}{res}ID variable{p_end}
+{p 0 48}{bind:district_num   }{txt}{bind: long   }{bind:{txt}%14.0g     }{space 1}{txt}district_num{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}ID variable{p_end}
+{p 0 48}{bind:unique_id      }{txt}{bind: str7   }{bind:{txt}%9s        }{space 1}{bind:         }{bind:  }{res}{res}ID variable{p_end}
+{p 0 48}{bind:townid_dumvar1 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   171.0000{p_end}
+{p 0 48}{bind:townid_dumvar2 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   172.0000{p_end}
+{p 0 48}{bind:townid_dumvar3 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   173.0000{p_end}
+{p 0 48}{bind:townid_dumvar4 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   175.0000{p_end}
+{p 0 48}{bind:townid_dumvar5 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   176.0000{p_end}
+{p 0 48}{bind:townid_dumvar6 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   177.0000{p_end}
+{p 0 48}{bind:townid_dumvar7 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   190.0000{p_end}
+{p 0 48}{bind:townid_dumvar8 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   191.0000{p_end}
+{p 0 48}{bind:townid_dumvar9 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   192.0000{p_end}
+{p 0 48}{bind:townid_dumvar10}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   193.0000{p_end}
+{p 0 48}{bind:townid_dumvar11}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   195.0000{p_end}
+{p 0 48}{bind:townid_dumvar12}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   196.0000{p_end}
+{p 0 48}{bind:townid_dumvar13}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   197.0000{p_end}
+{p 0 48}{bind:townid_dumvar14}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   198.0000{p_end}
+{p 0 48}{bind:townid_dumvar15}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   199.0000{p_end}
+{p 0 48}{bind:townid_dumvar16}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   200.0000{p_end}
+{p 0 48}{bind:townid_dumvar17}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   201.0000{p_end}
+{p 0 48}{bind:townid_dumvar18}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   208.0000{p_end}
+{p 0 48}{bind:townid_dumvar19}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   210.0000{p_end}
+{p 0 48}{bind:townid_dumvar20}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   211.0000{p_end}
+{p 0 48}{bind:townid_dumvar21}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   212.0000{p_end}
+{p 0 48}{bind:townid_dumvar22}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   213.0000{p_end}
+{p 0 48}{bind:townid_dumvar23}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   235.0000{p_end}
+{p 0 48}{bind:townid_dumvar24}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   236.0000{p_end}
+{p 0 48}{bind:townid_dumvar25}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   237.0000{p_end}
+{p 0 48}{bind:townid_dumvar26}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   238.0000{p_end}
+{p 0 48}{bind:townid_dumvar27}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   239.0000{p_end}
+{txt}{hline}
+Sorted by:  
+{res}     Note:  dataset has changed since last saved
+
+{com}. label define treatment_labels 0 "Control" 1 "Treatment"
+
+. label values treatment treatment_labels
+
+. describe
+
+{txt}Contains data from {res}stata_submission1.dta
+{txt}  obs:{res}         6,948                          
+{txt} vars:{res}            40                          21 Nov 2023 12:56
+{txt} size:{res}       576,684{txt} (98.9% of memory free)
+{hline}
+              storage  display     value
+variable name   type   format      label      variable label
+{hline}
+{p 0 48}{res}{bind:townid         }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}ID variable{p_end}
+{p 0 48}{bind:turnout_total  }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}Electoral data{p_end}
+{p 0 48}{bind:turnout_male   }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}Electoral data{p_end}
+{p 0 48}{bind:turnout_female }{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}Electoral data{p_end}
+{p 0 48}{bind:registered_to~l}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}Electoral data{p_end}
+{p 0 48}{bind:registered_male}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}Electoral data{p_end}
+{p 0 48}{bind:registered_fe~e}{txt}{bind: int    }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}Electoral data{p_end}
+{p 0 48}{bind:treatment      }{txt}{bind: byte   }{bind:{txt}%9.0g      }{space 1}{txt}treatment_labels{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}Intervention{p_end}
+{p 0 48}{bind:treatment_phase}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}Intervention{p_end}
+{p 0 48}{bind:townname       }{txt}{bind: str11  }{bind:{txt}%11s       }{space 1}{bind:         }{bind:  }{res}{res}ID variable{p_end}
+{p 0 48}{bind:district       }{txt}{bind: str14  }{bind:{txt}%14s       }{space 1}{bind:         }{bind:  }{res}{res}ID variable{p_end}
+{p 0 48}{bind:district_num   }{txt}{bind: long   }{bind:{txt}%14.0g     }{space 1}{txt}district_num{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}ID variable{p_end}
+{p 0 48}{bind:unique_id      }{txt}{bind: str7   }{bind:{txt}%9s        }{space 1}{bind:         }{bind:  }{res}{res}ID variable{p_end}
+{p 0 48}{bind:townid_dumvar1 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   171.0000{p_end}
+{p 0 48}{bind:townid_dumvar2 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   172.0000{p_end}
+{p 0 48}{bind:townid_dumvar3 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   173.0000{p_end}
+{p 0 48}{bind:townid_dumvar4 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   175.0000{p_end}
+{p 0 48}{bind:townid_dumvar5 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   176.0000{p_end}
+{p 0 48}{bind:townid_dumvar6 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   177.0000{p_end}
+{p 0 48}{bind:townid_dumvar7 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   190.0000{p_end}
+{p 0 48}{bind:townid_dumvar8 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   191.0000{p_end}
+{p 0 48}{bind:townid_dumvar9 }{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   192.0000{p_end}
+{p 0 48}{bind:townid_dumvar10}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   193.0000{p_end}
+{p 0 48}{bind:townid_dumvar11}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   195.0000{p_end}
+{p 0 48}{bind:townid_dumvar12}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   196.0000{p_end}
+{p 0 48}{bind:townid_dumvar13}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   197.0000{p_end}
+{p 0 48}{bind:townid_dumvar14}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   198.0000{p_end}
+{p 0 48}{bind:townid_dumvar15}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   199.0000{p_end}
+{p 0 48}{bind:townid_dumvar16}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   200.0000{p_end}
+{p 0 48}{bind:townid_dumvar17}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   201.0000{p_end}
+{p 0 48}{bind:townid_dumvar18}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   208.0000{p_end}
+{p 0 48}{bind:townid_dumvar19}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   210.0000{p_end}
+{p 0 48}{bind:townid_dumvar20}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   211.0000{p_end}
+{p 0 48}{bind:townid_dumvar21}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   212.0000{p_end}
+{p 0 48}{bind:townid_dumvar22}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   213.0000{p_end}
+{p 0 48}{bind:townid_dumvar23}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   235.0000{p_end}
+{p 0 48}{bind:townid_dumvar24}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   236.0000{p_end}
+{p 0 48}{bind:townid_dumvar25}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   237.0000{p_end}
+{p 0 48}{bind:townid_dumvar26}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   238.0000{p_end}
+{p 0 48}{bind:townid_dumvar27}{txt}{bind: byte   }{bind:{txt}%8.0g      }{space 1}{bind:         }{bind:  }{res}{res}townid==   239.0000{p_end}
+{txt}{hline}
+Sorted by:  
+{res}     Note:  dataset has changed since last saved
+
+{com}. save stata_submission1.dta, replace
+{txt}file stata_submission1.dta saved
+
+{com}. summarize turnout_total
+
+{txt}    Variable {c |}       Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 56}
+turnout_to~l {c |}{res}      6948    465.1336    153.7155          0       1045
+
+{com}. gen turnout_rate = turnout_total/registered_total
+
+. drop if registered_total ==0
+{txt}(0 observations deleted)
+
+{com}. summarize turnout_rate
+
+{txt}    Variable {c |}       Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 56}
+turnout_rate {c |}{res}      6948    .5737862    .2808202          0          1
+
+{com}. count if turnout_rate == 1
+{res}   20
+
+{com}. list townid district unique_id if turnout_rate == 1
+{txt}
+      {c TLC}{hline 8}{c -}{hline 16}{c -}{hline 10}{c TRC}
+      {c |} {res}townid         district   unique~d {txt}{c |}
+      {c LT}{hline 8}{c -}{hline 16}{c -}{hline 10}{c RT}
+ 207. {c |} {res}   171          Bhojpur    1710207 {txt}{c |}
+ 486. {c |} {res}   172            Buxar    1720486 {txt}{c |}
+ 536. {c |} {res}   172            Buxar    1720536 {txt}{c |}
+ 935. {c |} {res}   175             Gaya    1750937 {txt}{c |}
+1029. {c |} {res}   175             Gaya    1751031 {txt}{c |}
+      {c LT}{hline 8}{c -}{hline 16}{c -}{hline 10}{c RT}
+1693. {c |} {res}   190           Nawada    1901699 {txt}{c |}
+2432. {c |} {res}   192       Aurangabad    1922438 {txt}{c |}
+3072. {c |} {res}   196        Begusarai    1963080 {txt}{c |}
+3403. {c |} {res}   198            Siwan    1983411 {txt}{c |}
+3478. {c |} {res}   198            Siwan    1983486 {txt}{c |}
+      {c LT}{hline 8}{c -}{hline 16}{c -}{hline 10}{c RT}
+3686. {c |} {res}   199        Sitamarhi    1993695 {txt}{c |}
+4294. {c |} {res}   201   East Champaran    2014304 {txt}{c |}
+4340. {c |} {res}   201   East Champaran    2014350 {txt}{c |}
+4546. {c |} {res}   208   West Champaran    2084556 {txt}{c |}
+5361. {c |} {res}   213       Kishanganj    2135373 {txt}{c |}
+      {c LT}{hline 8}{c -}{hline 16}{c -}{hline 10}{c RT}
+5571. {c |} {res}   213       Kishanganj    2135585 {txt}{c |}
+5613. {c |} {res}   213       Kishanganj    2135627 {txt}{c |}
+5634. {c |} {res}   213       Kishanganj    2135648 {txt}{c |}
+5805. {c |} {res}   235          Katihar    2355819 {txt}{c |}
+5930. {c |} {res}   236          Katihar    2365946 {txt}{c |}
+      {c BLC}{hline 8}{c -}{hline 16}{c -}{hline 10}{c BRC}
+
+{com}. list townid district unique_id if turnout_rate == 0
+{txt}
+      {c TLC}{hline 8}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}townid   district   unique~d {txt}{c |}
+      {c LT}{hline 8}{c -}{hline 10}{c -}{hline 10}{c RT}
+ 666. {c |} {res}   173     Rohtas    1730666 {txt}{c |}
+1168. {c |} {res}   176      Saran    1761172 {txt}{c |}
+2808. {c |} {res}   195     Munger    1952816 {txt}{c |}
+5727. {c |} {res}   235    Katihar    2355741 {txt}{c |}
+      {c BLC}{hline 8}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{com}. tabulate treatment treatment_phase
+
+{txt}Interventi {c |}     Intervention
+        on {c |}         1          2 {c |}     Total
+{hline 11}{c +}{hline 22}{c +}{hline 10}
+   Control {c |}{res}     1,752      1,741 {txt}{c |}{res}     3,493 
+{txt} Treatment {c |}{res}     1,839      1,616 {txt}{c |}{res}     3,455 
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+     Total {c |}{res}     3,591      3,357 {txt}{c |}{res}     6,948 
+
+
+{com}. egen turnout_total_sum = sum(turnout_total), by (district)
+
+. egen registered_total_sum = sum(registered_total), by (district)
+
+. gen turnout_rate_district = (turnout_total_sum/registered_total_sum)*100
+
+. sort district
+
+. by district: list district turnout_total_sum registered_total_sum turnout_rate_district if _n==1
+
+{txt}{hline}
+-> district = Araria
+
+     {c TLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+     {c |} {res}district   turnou~m   regist~m   turnou~t {txt}{c |}
+     {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+  1. {c |} {res}  Araria     118352     252919   46.79443 {txt}{c |}
+     {c BLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Aurangabad
+
+     {c TLC}{hline 12}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+     {c |} {res}  district   turnou~m   regist~m   turnou~t {txt}{c |}
+     {c LT}{hline 12}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+  1. {c |} {res}Aurangabad     111122     217922   50.99164 {txt}{c |}
+     {c BLC}{hline 12}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Begusarai
+
+     {c TLC}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+     {c |} {res} district   turnou~m   regist~m   turnou~t {txt}{c |}
+     {c LT}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+  1. {c |} {res}Begusarai     127784     254321   50.24516 {txt}{c |}
+     {c BLC}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Bhagalpur
+
+     {c TLC}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+     {c |} {res} district   turnou~m   regist~m   turnou~t {txt}{c |}
+     {c LT}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+  1. {c |} {res}Bhagalpur     130256     253614   51.35994 {txt}{c |}
+     {c BLC}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Bhojpur
+
+      {c TLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res} Bhojpur     106977     254769    41.9898 {txt}{c |}
+      {c BLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Buxar
+
+      {c TLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}   Buxar     150187     307453   48.84877 {txt}{c |}
+      {c BLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Darbhanga
+
+      {c TLC}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res} district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}Darbhanga     120208     245414   48.98172 {txt}{c |}
+      {c BLC}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = East Champaran
+
+      {c TLC}{hline 16}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}      district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 16}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}East Champaran     124549     254450   48.94832 {txt}{c |}
+      {c BLC}{hline 16}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Gaya
+
+      {c TLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}    Gaya     125009     276415   45.22511 {txt}{c |}
+      {c BLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Katihar
+
+      {c TLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res} Katihar     230869     503817   45.82398 {txt}{c |}
+      {c BLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Kishanganj
+
+      {c TLC}{hline 12}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}  district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 12}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}Kishanganj     126766     270153   46.92378 {txt}{c |}
+      {c BLC}{hline 12}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Madhepura
+
+      {c TLC}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res} district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}Madhepura      99058     237294   41.74484 {txt}{c |}
+      {c BLC}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Munger
+
+      {c TLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}  Munger     202273     429361   47.11024 {txt}{c |}
+      {c BLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Muzaffarpur
+
+      {c TLC}{hline 13}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}   district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 13}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}Muzaffarpur     119827     270805   44.24844 {txt}{c |}
+      {c BLC}{hline 13}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Nalanda
+
+      {c TLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res} Nalanda     131771     303022   43.48562 {txt}{c |}
+      {c BLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Nawada
+
+      {c TLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}  Nawada     115897     253423   45.73263 {txt}{c |}
+      {c BLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Purnia
+
+      {c TLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}  Purnia     123553     240111   51.45662 {txt}{c |}
+      {c BLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Rohtas
+
+      {c TLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}  Rohtas     101332     246711   41.07316 {txt}{c |}
+      {c BLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Saharsa
+
+      {c TLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res} Saharsa     115704     241015   48.00697 {txt}{c |}
+      {c BLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Samastipur
+
+      {c TLC}{hline 12}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}  district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 12}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}Samastipur     120856     248580   48.61855 {txt}{c |}
+      {c BLC}{hline 12}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Saran
+
+      {c TLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}   Saran     120898     271002   44.61148 {txt}{c |}
+      {c BLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Sitamarhi
+
+      {c TLC}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res} district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}Sitamarhi     125932     243308   51.75827 {txt}{c |}
+      {c BLC}{hline 11}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Siwan
+
+      {c TLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}   Siwan     110999     225492   49.22525 {txt}{c |}
+      {c BLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = Vaishali
+
+      {c TLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}Vaishali     127300     223175   57.04044 {txt}{c |}
+      {c BLC}{hline 10}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{hline}
+-> district = West Champaran
+
+      {c TLC}{hline 16}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c TRC}
+      {c |} {res}      district   turnou~m   regist~m   turnou~t {txt}{c |}
+      {c LT}{hline 16}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c RT}
+   1. {c |} {res}West Champaran     144269     284882   50.64167 {txt}{c |}
+      {c BLC}{hline 16}{c -}{hline 10}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+
+{com}. table treatment, contents (mean turnout_male mean turnout_female mean turnout_total)
+
+{txt}{hline 10}{c TT}{hline 47}
+Intervent {c |}
+ion       {c |} mean(turnou~e)  mean(turnou~e)  mean(turnou~l)
+{hline 10}{c +}{hline 47}
+  Control {c |}        {res}253.609         207.672         461.281
+{txt}Treatment {c |}        {res}253.231         215.797         469.028
+{txt}{hline 10}{c BT}{hline 47}
+
+{com}. gen turnout_rate_female = turnout_female / registered_female
+
+. robvar turnout_rate_female, by (treatment)
+
+{txt}Interventio {c |}   Summary of turnout_rate_female
+          n {c |}        Mean   Std. Dev.       Freq.
+{hline 12}{c +}{hline 36}
+    Control {c |}  {res} .56926247   .28302074        3493
+  {txt}Treatment {c |}  {res} .58317417   .27688323        3455
+{txt}{hline 12}{c +}{hline 36}
+      Total {c |}  {res} .57618028   .28005184        6948
+
+{txt}W0  = {res} 4.0487930{txt}   df({res}1, 6946{txt})     Pr > F = {res}0.04424147
+
+{txt}W50 = {res} 1.0849308{txt}   df({res}1, 6946{txt})     Pr > F = {res}0.29763337
+
+{txt}W10 = {res} 3.6109037{txt}   df({res}1, 6946{txt})     Pr > F = {res}0.05744329
+
+{com}. ttest turnout_rate_female, by(treatment) unequal
+
+{txt}Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+ Control {c |}{res}{col 12}   3493{col 22} .5692625{col 34} .0047887{col 46} .2830207{col 58} .5598735{col 70} .5786514
+{txt}Treatmen {c |}{res}{col 12}   3455{col 22} .5831742{col 34} .0047106{col 46} .2768832{col 58} .5739384{col 70} .5924099
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12}   6948{col 22} .5761803{col 34} .0033598{col 46} .2800518{col 58} .5695941{col 70} .5827664
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22}-.0139117{col 34} .0067172{col 58}-.0270795{col 70}-.0007439
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}Control{txt}) - mean({res}Treatmen{txt})                         t = {res} -2.0710
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res} 6945.16
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}0.0192         {txt}Pr(|T| > |t|) = {res}0.0384          {txt}Pr(T > t) = {res}0.9808
+
+{com}. save stata_submission1.dta, replace
+{txt}file stata_submission1.dta saved
+
+{com}. collapse (mean) turnout_male turnout_female turnout_total, by(treatment)
+
+. bysort treatment: egen mean_turnout_male = mean(turnout_male)
+
+. 
+. bysort treatment: egen mean_turnout_female = mean(turnout_female)
+
+. 
+.  bysort treatment: egen mean_turnout_total = mean(turnout_total)
+
+. graph bar mean_turnout_female, over(treatment) title("Female Turnout by Treatment") name(femaleTurnout, replace)
+{res}
+{com}. 
+. graph bar mean_turnout_total, over(treatment) title("Total Turnout by Treatment") name(totalTurnout, replace)
+{res}
+{com}. 
+. graph combine maleTurnout femaleTurnout totalTurnout, ycommon xsize(15) ysize(10) title("Turnout by Gender and Treatment Group")
+{err}maleTurnout is not a memory graph
+{txt}{search r(198):r(198);}
+
+{com}. graph bar mean_turnout_male, over(treatment) title("Male Turnout by Treatment") name(maleTurnout, replace)
+{res}
+{com}. graph combine maleTurnout femaleTurnout totalTurnout, ycommon xsize(15) ysize(10) title("Turnout by Gender and Treatment Group")
+{res}
+{com}. graph save Graph "C:\Users\AnshulRaiSharma\OneDrive - Azim Premji Foundation\Desktop\IFMR\submission\stata_submission_graph1.gph"
+{res}{txt}(file C:\Users\AnshulRaiSharma\OneDrive - Azim Premji Foundation\Desktop\IFMR\submission\stata_submission_graph1.gph saved)
+
+{com}. use stata_submission.dta, clear
+
+. use stata_submission1.dta, clear
+
+. ssc install outreg2
+{txt}checking {hilite:outreg2} consistency and verifying not already installed...
+all files already exist and are up to date.
+
+{com}. regress turnout_total treatment registered_male registered_female registered_total townid_dumvar*
+{txt}note: registered_male omitted because of collinearity
+note: townid_dumvar16 omitted because of collinearity
+
+      Source {c |}       SS       df       MS              Number of obs ={res}    6948
+{txt}{hline 13}{char +}{hline 30}           F( 29,  6918) ={res}   29.56
+    {txt}   Model {char |} {res} 18096177.1    29  624006.108           {txt}Prob > F      = {res} 0.0000
+    {txt}Residual {char |} {res}  146050693  6918  21111.6931           {txt}R-squared     = {res} 0.1102
+{txt}{hline 13}{char +}{hline 30}           Adj R-squared = {res} 0.1065
+    {txt}   Total {char |} {res}  164146870  6947   23628.454           {txt}Root MSE      = {res}  145.3
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}turnout_to~l{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}treatment {c |}{col 14}{res}{space 2} 8.251368{col 26}{space 2} 3.499468{col 37}{space 1}    2.36{col 46}{space 3}0.018{col 54}{space 4} 1.391337{col 67}{space 3}  15.1114
+{txt}regist~_male {c |}{col 14}{res}  (omitted)
+{txt}regist~emale {c |}{col 14}{res}{space 2} .0356376{col 26}{space 2} .0712908{col 37}{space 1}    0.50{col 46}{space 3}0.617{col 54}{space 4}-.1041143{col 67}{space 3} .1753895
+{txt}registered~l {c |}{col 14}{res}{space 2} .0416112{col 26}{space 2} .0323285{col 37}{space 1}    1.29{col 46}{space 3}0.198{col 54}{space 4}-.0217627{col 67}{space 3}  .104985
+{txt}townid_du~r1 {c |}{col 14}{res}{space 2}-175.9886{col 26}{space 2} 13.18273{col 37}{space 1}  -13.35{col 46}{space 3}0.000{col 54}{space 4}-201.8308{col 67}{space 3}-150.1464
+{txt}townid_du~r2 {c |}{col 14}{res}{space 2}-102.6072{col 26}{space 2} 12.71847{col 37}{space 1}   -8.07{col 46}{space 3}0.000{col 54}{space 4}-127.5393{col 67}{space 3}-77.67506
+{txt}townid_du~r3 {c |}{col 14}{res}{space 2}-170.7871{col 26}{space 2} 13.40398{col 37}{space 1}  -12.74{col 46}{space 3}0.000{col 54}{space 4} -197.063{col 67}{space 3}-144.5112
+{txt}townid_du~r4 {c |}{col 14}{res}{space 2}-136.4234{col 26}{space 2} 13.01438{col 37}{space 1}  -10.48{col 46}{space 3}0.000{col 54}{space 4}-161.9356{col 67}{space 3}-110.9112
+{txt}townid_du~r5 {c |}{col 14}{res}{space 2}-133.6957{col 26}{space 2} 13.13937{col 37}{space 1}  -10.18{col 46}{space 3}0.000{col 54}{space 4}-159.4529{col 67}{space 3}-107.9385
+{txt}townid_du~r6 {c |}{col 14}{res}{space 2} -141.555{col 26}{space 2} 13.10569{col 37}{space 1}  -10.80{col 46}{space 3}0.000{col 54}{space 4}-167.2462{col 67}{space 3}-115.8638
+{txt}townid_du~r7 {c |}{col 14}{res}{space 2}-122.1321{col 26}{space 2} 13.34172{col 37}{space 1}   -9.15{col 46}{space 3}0.000{col 54}{space 4}-148.2859{col 67}{space 3}-95.97819
+{txt}townid_du~r8 {c |}{col 14}{res}{space 2}-139.3054{col 26}{space 2} 12.86215{col 37}{space 1}  -10.83{col 46}{space 3}0.000{col 54}{space 4}-164.5192{col 67}{space 3}-114.0916
+{txt}townid_du~r9 {c |}{col 14}{res}{space 2} -65.7454{col 26}{space 2} 13.86996{col 37}{space 1}   -4.74{col 46}{space 3}0.000{col 54}{space 4}-92.93479{col 67}{space 3}-38.55601
+{txt}townid_du~10 {c |}{col 14}{res}{space 2}-84.45047{col 26}{space 2} 13.73155{col 37}{space 1}   -6.15{col 46}{space 3}0.000{col 54}{space 4}-111.3685{col 67}{space 3}-57.53241
+{txt}townid_du~11 {c |}{col 14}{res}{space 2}-162.8283{col 26}{space 2} 13.79396{col 37}{space 1}  -11.80{col 46}{space 3}0.000{col 54}{space 4}-189.8687{col 67}{space 3}-135.7879
+{txt}townid_du~12 {c |}{col 14}{res}{space 2}-61.57941{col 26}{space 2} 13.44165{col 37}{space 1}   -4.58{col 46}{space 3}0.000{col 54}{space 4}-87.92917{col 67}{space 3}-35.22966
+{txt}townid_du~13 {c |}{col 14}{res}{space 2}-45.73756{col 26}{space 2} 13.48028{col 37}{space 1}   -3.39{col 46}{space 3}0.001{col 54}{space 4}-72.16305{col 67}{space 3}-19.31207
+{txt}townid_du~14 {c |}{col 14}{res}{space 2}  -102.65{col 26}{space 2} 13.60348{col 37}{space 1}   -7.55{col 46}{space 3}0.000{col 54}{space 4} -129.317{col 67}{space 3}-75.98302
+{txt}townid_du~15 {c |}{col 14}{res}{space 2} -64.7398{col 26}{space 2} 13.45411{col 37}{space 1}   -4.81{col 46}{space 3}0.000{col 54}{space 4}-91.11398{col 67}{space 3}-38.36561
+{txt}townid_du~16 {c |}{col 14}{res}  (omitted)
+{txt}townid_du~17 {c |}{col 14}{res}{space 2}-61.78559{col 26}{space 2} 13.53467{col 37}{space 1}   -4.56{col 46}{space 3}0.000{col 54}{space 4} -88.3177{col 67}{space 3}-35.25348
+{txt}townid_du~18 {c |}{col 14}{res}{space 2}-82.98701{col 26}{space 2} 12.93685{col 37}{space 1}   -6.41{col 46}{space 3}0.000{col 54}{space 4}-108.3472{col 67}{space 3}-57.62682
+{txt}townid_du~19 {c |}{col 14}{res}{space 2}-95.34014{col 26}{space 2} 13.40461{col 37}{space 1}   -7.11{col 46}{space 3}0.000{col 54}{space 4}-121.6173{col 67}{space 3}  -69.063
+{txt}townid_du~20 {c |}{col 14}{res}{space 2}-88.29129{col 26}{space 2} 13.58718{col 37}{space 1}   -6.50{col 46}{space 3}0.000{col 54}{space 4}-114.9263{col 67}{space 3}-61.65625
+{txt}townid_du~21 {c |}{col 14}{res}{space 2}-46.99677{col 26}{space 2} 13.64386{col 37}{space 1}   -3.44{col 46}{space 3}0.001{col 54}{space 4}-73.74292{col 67}{space 3}-20.25062
+{txt}townid_du~22 {c |}{col 14}{res}{space 2}-131.8489{col 26}{space 2} 12.99752{col 37}{space 1}  -10.14{col 46}{space 3}0.000{col 54}{space 4} -157.328{col 67}{space 3}-106.3697
+{txt}townid_du~23 {c |}{col 14}{res}{space 2}-145.4131{col 26}{space 2} 13.38209{col 37}{space 1}  -10.87{col 46}{space 3}0.000{col 54}{space 4}-171.6461{col 67}{space 3}-119.1801
+{txt}townid_du~24 {c |}{col 14}{res}{space 2}-149.2125{col 26}{space 2} 12.95927{col 37}{space 1}  -11.51{col 46}{space 3}0.000{col 54}{space 4}-174.6166{col 67}{space 3}-123.8083
+{txt}townid_du~25 {c |}{col 14}{res}{space 2}-117.2138{col 26}{space 2}  13.3065{col 37}{space 1}   -8.81{col 46}{space 3}0.000{col 54}{space 4}-143.2987{col 67}{space 3}-91.12901
+{txt}townid_du~26 {c |}{col 14}{res}{space 2}-162.0893{col 26}{space 2} 13.54654{col 37}{space 1}  -11.97{col 46}{space 3}0.000{col 54}{space 4}-188.6447{col 67}{space 3} -135.534
+{txt}townid_du~27 {c |}{col 14}{res}{space 2}-108.0903{col 26}{space 2} 13.29549{col 37}{space 1}   -8.13{col 46}{space 3}0.000{col 54}{space 4}-134.1535{col 67}{space 3}-82.02701
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 513.6356{col 26}{space 2} 10.66026{col 37}{space 1}   48.18{col 46}{space 3}0.000{col 54}{space 4} 492.7382{col 67}{space 3}  534.533
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. outreg2 using results.doc, replace word ctitle("Regression Results") title("Effects of Treatment on Total Turnout") keep(treatment registered_male registered_female registered_total) noobs dec(3)
+{txt}{stata `"shellout using `"results.doc"'"':results.doc}
+{browse `"C:\Users\AnshulRaiSharma\Downloads\S11-20231118T131352Z-001\S11"' :dir}{com} : {txt}{stata `"seeout using "results.txt""':seeout}
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\AnshulRaiSharma\OneDrive - Azim Premji Foundation\Desktop\IFMR\submission\STATA_log_submission_21.11.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}21 Nov 2023, 14:19:56
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
